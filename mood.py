@@ -8,6 +8,7 @@ import requests
 import nltk
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
+from urllib.parse import urlparse
 
 
 
@@ -22,3 +23,8 @@ html = urlopen(url)
 beautifulhtml = BeautifulSoup(html.read(),"lxml")
 content = beautifulhtml.find("div",  {"class":"article-body-text rail-offset"})
 print(content)
+
+
+parsed_uri = urlparse(url)
+domain = "{uri.netloc}".format(uri=parsed_uri)
+print(domain)
